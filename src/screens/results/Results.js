@@ -30,12 +30,14 @@ Use the form to search for People or Movies.`}
           />
         )}
       </View>
-      <ActionButton
-        label={'back to search'}
-        disabled={false}
-        onPress={generateBack({navigation})}
-        style={styles.footerButtom}
-      />
+      {!loading && !isNil(data) && (
+        <ActionButton
+          label={'back to search'}
+          disabled={false}
+          onPress={generateBack({navigation})}
+          style={styles.footerButtom}
+        />
+      )}
     </View>
   );
 }
