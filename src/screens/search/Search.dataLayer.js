@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {isNil} from 'lodash';
 import Search from './Search';
 
-export function SerachDataLayer({}) {
+export function SerachDataLayer() {
   const [searchText, setSearchText] = React.useState('');
+  const [searchType, setSearchType] = React.useState();
+  const canSearch = searchText !== '' && !isNil(searchType);
   const searchOptions = [
     {
       label: 'People',
@@ -18,8 +21,11 @@ export function SerachDataLayer({}) {
   return (
     <Search
       setSearchText={setSearchText}
+      setSearchType={setSearchType}
       searchText={searchText}
+      searchType={searchType}
       options={searchOptions}
+      disableSearchButton={!canSearch}
     />
   );
 }
