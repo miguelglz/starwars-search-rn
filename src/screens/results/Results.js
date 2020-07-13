@@ -5,26 +5,37 @@ import {isNil} from 'lodash';
 import styles from './Results.style';
 import {generateGoToRoute, generateBack} from '../../helpers/navigation';
 import ResultItem from './resultItem';
+import ActionButton from '../../components/actionButton';
 
-function Results({data, loading, navigation, searchType}) {
+function Results({data, loading, navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Results</Text>
       </View>
-      <View>
-        {loading ? (
-          <Text>Searching...</Text>
+      <View style={styles.resultsContainer}>
+        {loading || isNil(data) ? (
+          <Text style={styles.stateLabel}>Searching...</Text>
+        ) : data.length === 0 ? (
+          <Text style={styles.stateLabel}>
+            {`There are zero matches.
+Use the form to search for People or Movies.`}
+          </Text>
         ) : (
           <FlatList
             data={data}
-            renderItem={({item}) => (
-              <ResultItem data={item} resultType={searchType} />
-            )}
-            keyExtractor={({name}) => name}
+            style={styles.resultList}
+            renderItem={({item}) => <ResultItem data={item} />}
+            keyExtractor={({displayTitle}) => displayTitle}
           />
         )}
       </View>
+      <ActionButton
+        label={'back to search'}
+        disabled={false}
+        onPress={generateBack({navigation})}
+        style={styles.footerButtom}
+      />
     </View>
   );
 }

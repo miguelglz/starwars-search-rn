@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Generate callback to go navigate back.
+ * Generates a callback function to navigate back.
  *
  * @param {object} navigation - React Navigation
  *
@@ -12,7 +12,7 @@ export function generateBack({navigation}) {
 }
 
 /**
- * goToRoute - Generates callback to navigate to a route.
+ * Generates a callback function to navigate to a route.
  *
  * @param {object} navigation - React Navigation
  * @param {object} params - React Navigation parameters to be used in the new screen

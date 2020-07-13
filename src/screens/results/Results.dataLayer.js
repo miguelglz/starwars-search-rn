@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Results from './Results';
+import {generateDataSet} from './Results.utils';
 import swAPI from '../../helpers/api';
 
 export function ResultsDataLayer({
@@ -10,20 +11,25 @@ export function ResultsDataLayer({
   navigation,
 }) {
   const [loading, setLoading] = React.useState(true);
-  const [results, setResults] = React.useState(null);
+  const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
     async function fetchData() {
-      const response = await swAPI.getBySearchTerm(searchType, searchText);
-      console.log('respn', response);
-      setResults(response.results);
+      try {
+        const {results} = await swAPI.getBySearchTerm(searchType, searchText);
+        const dataSet = generateDataSet({results, searchType});
+        setData(dataSet);
+      } catch (e) {
+        console.log(e);
+        throw new Error(e.message);
+      }
     }
 
     fetchData();
     setLoading(false);
   }, [searchType, searchText]);
 
-  return <Results data={results} loading={loading} searchType={searchType} />;
+  return <Results data={data} loading={loading} navigation={navigation} />;
 }
 ResultsDataLayer.propTypes = {
   route: PropTypes.object,

@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import styles from './ResultItem.style';
 import ActionButton from '../../../components/actionButton';
 
-function ResultItem({data, resultType}) {
+function ResultItem({data}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{data.name}</Text>
+      <Text style={styles.title}>{data.displayTitle}</Text>
       <ActionButton
         label={'see details'}
         disabled={false}
@@ -19,7 +19,6 @@ function ResultItem({data, resultType}) {
 
 ResultItem.propTypes = {
   data: PropTypes.object,
-  resultType: PropTypes.string,
 };
 
 ResultItem.defaultProps = {

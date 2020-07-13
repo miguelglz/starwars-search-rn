@@ -16,4 +16,20 @@ export default StyleSheet.create({
     fontFamily: theme.font.weight.bold,
     fontSize: theme.font.size.title,
   },
+  resultsContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  stateLabel: {
+    fontFamily: theme.font.weight.bold,
+    color: theme.colors.grey[400],
+    textAlign: 'center',
+  },
+  resultList: {
+    width: '100%',
+  },
+  footerButtom: {
+    marginTop: theme.spacing.margin.lg,
+  },
 });

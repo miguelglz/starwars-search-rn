@@ -13,6 +13,7 @@ function RadioGroup({data, onSelect, selected}) {
           selected={selected === value}
           onPressCallback={() => onSelect(value)}
           style={styles.item}
+          key={value}
         />
       ))}
     </View>

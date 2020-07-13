@@ -6,6 +6,9 @@ export const headerDefaults = {
     fontFamily: 'Poppins-Bold',
     fontSize: theme.font.size.title,
   },
+  headerLeftContainerStyle: {
+    padding: 20,
+  },
   headerBackTitleVisible: false,
 };
 
