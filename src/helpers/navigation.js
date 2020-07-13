@@ -15,7 +15,9 @@ export function generateBack({navigation}) {
  * goToRoute - Generates callback to navigate to a route.
  *
  * @param {object} navigation - React Navigation
+ * @param {object} params - React Navigation parameters to be used in the new screen
  * @param {string} routeName - Route name from AppWithNavigation
+ * @param {bool} stack - Defines if the next screen should be stacked or not.
  *
  * @returns {Function} callback - Callback to navigate to a route.
  */

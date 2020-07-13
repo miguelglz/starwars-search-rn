@@ -2,12 +2,13 @@ import React from 'react';
 import {Text, View, TextInput} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './Search.style';
-import {generateGoToRoute, generateBack} from '../../helpers/navigation';
+import {generateGoToRoute} from '../../helpers/navigation';
 import RadioGroup from '../../components/radioGroup';
 import ActionButton from '../../components/actionButton';
 
 function Search({
   disableSearchButton,
+  navigation,
   options,
   placeholder,
   searchText,
@@ -15,6 +16,8 @@ function Search({
   setSearchText,
   setSearchType,
 }) {
+  const searchParams = {searchType, searchText};
+
   return (
     <View style={styles.container}>
       <View>
@@ -31,13 +34,23 @@ function Search({
           style={styles.searchInput}
         />
       </View>
-      <ActionButton label={'search'} disabled={disableSearchButton} />
+      <ActionButton
+        label={'search'}
+        disabled={disableSearchButton}
+        onPress={generateGoToRoute({
+          navigation,
+          params: searchParams,
+          routeName: 'Results',
+          stack: true,
+        })}
+      />
     </View>
   );
 }
 
 Search.propTypes = {
   disableSearchButton: PropTypes.bool,
+  navigation: PropTypes.object,
   options: PropTypes.array,
   placeholder: PropTypes.string,
 };

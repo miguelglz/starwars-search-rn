@@ -1,7 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
 import PropTypes from 'prop-types';
-import {isNil} from 'lodash';
 import styles from './RadioGroup.style';
 import RadioButton from '../radioButton';
 

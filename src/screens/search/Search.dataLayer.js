@@ -3,7 +3,7 @@ import React from 'react';
 import {isNil} from 'lodash';
 import Search from './Search';
 
-export function SerachDataLayer() {
+export function SerachDataLayer({navigation}) {
   const [searchText, setSearchText] = React.useState('');
   const [searchType, setSearchType] = React.useState();
   const canSearch = searchText !== '' && !isNil(searchType);
@@ -14,7 +14,7 @@ export function SerachDataLayer() {
     },
     {
       label: 'Movies',
-      value: 'movies',
+      value: 'films',
     },
   ];
 
@@ -26,6 +26,7 @@ export function SerachDataLayer() {
       searchType={searchType}
       options={searchOptions}
       disableSearchButton={!canSearch}
+      navigation={navigation}
     />
   );
 }

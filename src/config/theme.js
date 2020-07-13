@@ -22,6 +22,7 @@ const spacing = {
     sm: 8,
     md: 10,
     lg: 16,
+    lg2: 19.5,
     xl: 30,
   },
   margin: {
