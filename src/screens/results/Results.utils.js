@@ -26,7 +26,6 @@ export function generateDataSet({results, searchType}) {
     return {
       ...item,
       displayTitle,
-      searchType,
     };
   });
 }

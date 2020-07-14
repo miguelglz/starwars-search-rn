@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './Details.style';
+import {generateParagraph} from './Details.utils';
 import {generateGoToRoute} from '../../helpers/navigation';
 import Paragraph from './paragraph';
 import ActionButton from '../../components/actionButton';

@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import {connect} from 'react-redux';
+import {setSearchData} from '../../actions/ResultsActions';
 import {isNil} from 'lodash';
 import Search from './Search';
 
-export function SerachDataLayer({navigation}) {
+export function SearchDataLayer({
+  dispatchSetSearchData,
+  navigation,
+  searchData,
+}) {
   const [searchText, setSearchText] = React.useState('');
-  const [searchType, setSearchType] = React.useState();
-  const canSearch = searchText !== '' && !isNil(searchType);
+  const canSearch = searchText !== '' && !isNil(searchData.type);
   const searchOptions = [
     {
       label: 'People',
@@ -20,22 +25,23 @@ export function SerachDataLayer({navigation}) {
 
   return (
     <Search
+      setSearchData={dispatchSetSearchData}
+      searchData={searchData}
+      navigation={navigation}
       setSearchText={setSearchText}
-      setSearchType={setSearchType}
       searchText={searchText}
-      searchType={searchType}
       options={searchOptions}
       disableSearchButton={!canSearch}
-      navigation={navigation}
     />
   );
 }
-SerachDataLayer.propTypes = {
-  defaultValue: PropTypes.string,
+SearchDataLayer.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  searchData: PropTypes.object,
+  dispatchSetSearchData: PropTypes.func.isRequired,
 };
 
-SerachDataLayer.defaultProps = {
-  defaultValue: '',
-};
+const mapDispatchToProps = {dispatchSetSearchData: setSearchData};
+const mapStateToProps = ({results: {searchData}}) => ({searchData});
 
-export default SerachDataLayer;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchDataLayer);

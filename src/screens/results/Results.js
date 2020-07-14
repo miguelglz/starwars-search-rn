@@ -3,11 +3,11 @@ import {Text, View, FlatList} from 'react-native';
 import PropTypes from 'prop-types';
 import {isNil} from 'lodash';
 import styles from './Results.style';
-import {generateGoToRoute, generateBack} from '../../helpers/navigation';
+import {generateBack} from '../../helpers/navigation';
 import ResultItem from './resultItem';
 import ActionButton from '../../components/actionButton';
 
-function Results({data, loading, navigation}) {
+function Results({data, loading, navigation, searchData}) {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -28,7 +28,7 @@ Use the form to search for People or Movies.`}
             renderItem={({item}) => (
               <ResultItem data={item} navigation={navigation} />
             )}
-            keyExtractor={({displayTitle}) => displayTitle}
+            keyExtractor={(data) => data[searchData.titleProperty]}
           />
         )}
       </View>
@@ -48,7 +48,6 @@ Results.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool,
   navigation: PropTypes.object,
-  searchType: PropTypes.string,
 };
 
 export default Results;

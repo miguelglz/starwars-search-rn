@@ -12,20 +12,18 @@ function Search({
   options,
   placeholder,
   searchText,
-  searchType,
+  searchData,
   setSearchText,
-  setSearchType,
+  setSearchData,
 }) {
-  const searchParams = {searchType, searchText};
-
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.subTitle}>What are you searching for ?</Text>
         <RadioGroup
           data={options}
-          onSelect={setSearchType}
-          selected={searchType}
+          onSelect={setSearchData}
+          selected={searchData.type}
         />
         <TextInput
           placeholder={placeholder}
@@ -39,7 +37,7 @@ function Search({
         disabled={disableSearchButton}
         onPress={generateGoToRoute({
           navigation,
-          params: searchParams,
+          params: {searchText},
           routeName: 'Results',
           stack: true,
         })}
