@@ -34,4 +34,8 @@ export default StyleSheet.create({
   footerButtom: {
     marginTop: theme.spacing.margin.lg,
   },
+  linkContainer: {
+    flexDirection: 'row',
+    height: 20,
+  },
 });

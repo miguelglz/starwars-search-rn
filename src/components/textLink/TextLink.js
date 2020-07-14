@@ -2,43 +2,20 @@ import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {isNil} from 'lodash';
-import styles from './ActionButton.style';
+import styles from './TextLink.style';
 
-function ActionButton({disabled, label, onPress, style}) {
-  function handleOnPress() {
-    if (!disabled) {
-      onPress();
-    }
-  }
-
+function TextLink({label, onPress, style}) {
   return (
-    <TouchableOpacity
-      style={[
-        styles.container,
-        disabled ? styles.disabled : styles.active,
-        !isNil(style) ? style : null,
-      ]}
-      onPress={handleOnPress}>
-      <Text
-        style={[
-          styles.label,
-          disabled ? styles.disabledText : styles.activeText,
-        ]}>
-        {label}
-      </Text>
+    <TouchableOpacity onPress={onPress}>
+      <Text style={[styles.label, !isNil(style) ? style : null]}>{label}</Text>
     </TouchableOpacity>
   );
 }
 
-ActionButton.propTypes = {
-  disabled: PropTypes.bool,
-  label: PropTypes.string,
-  onPress: PropTypes.func,
+TextLink.propTypes = {
+  label: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
   style: PropTypes.object,
 };
 
-ActionButton.defaultProps = {
-  disabled: false,
-};
-
-export default ActionButton;
+export default TextLink;

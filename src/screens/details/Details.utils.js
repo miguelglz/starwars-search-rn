@@ -40,6 +40,7 @@ export function getPropertiesAndTitles({currentDetails, searchType}) {
           title: 'Movies',
           urls: films,
           titleProperty: 'title',
+          searchType: 'films',
         },
         description: {
           title: 'Details',
@@ -59,6 +60,7 @@ Mass: ${mass}`,
           title: 'Characters',
           urls: characters,
           titleProperty: 'name',
+          searchType: 'people',
         },
         description: {
           title: 'Opening Crawl',

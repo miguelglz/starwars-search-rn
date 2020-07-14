@@ -16,7 +16,7 @@ function Paragraph({subTitle, content}) {
 
 Paragraph.propTypes = {
   subTitle: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };
 
 export default Paragraph;

@@ -1,3 +1,3 @@
-import ActionButton from './ActionButton';
+import TextLink from './TextLink';
 
-export default ActionButton;
+export default TextLink;

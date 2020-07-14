@@ -32,15 +32,10 @@ export function ResultsDataLayer({
 
     fetchData();
     setLoading(false);
-  }, [searchText]);
+  }, []);
 
   return (
-    <Results
-      data={resultList}
-      loading={loading}
-      navigation={navigation}
-      searchData={searchData}
-    />
+    <Results data={resultList} loading={loading} navigation={navigation} />
   );
 }
 ResultsDataLayer.propTypes = {

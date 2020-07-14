@@ -7,7 +7,7 @@ import {generateBack} from '../../helpers/navigation';
 import ResultItem from './resultItem';
 import ActionButton from '../../components/actionButton';
 
-function Results({data, loading, navigation, searchData}) {
+function Results({data, loading, navigation}) {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -28,7 +28,7 @@ Use the form to search for People or Movies.`}
             renderItem={({item}) => (
               <ResultItem data={item} navigation={navigation} />
             )}
-            keyExtractor={(data) => data[searchData.titleProperty]}
+            keyExtractor={(item, index) => `${new Date().valueOf()}${index}`}
           />
         )}
       </View>
