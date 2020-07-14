@@ -1,17 +1,36 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ScrollView} from 'react-native';
 import PropTypes from 'prop-types';
+import {isNil} from 'lodash';
 import styles from './Details.style';
-import {generateParagraph} from './Details.utils';
 import {generateGoToRoute} from '../../helpers/navigation';
 import Paragraph from './paragraph';
 import ActionButton from '../../components/actionButton';
 
-function Details({data, loading, navigation}) {
+function Details({currentDetails, loading, navigation, title, detailsData}) {
+  const linksData =
+    !isNil(currentDetails) && currentDetails.linksData
+      ? currentDetails.linksData
+          .map((link) => link[detailsData.links.titleProperty])
+          .join(', ')
+      : `Loading Details...`;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{data.displayTitle}</Text>
-      <Paragraph />
+    <ScrollView contentContainerStyle={styles.container}>
+      <View>
+        {isNil(detailsData) || loading ? (
+          <Text>Loading Details...</Text>
+        ) : (
+          <>
+            <Text style={styles.title}>{title}</Text>
+            <Paragraph
+              subTitle={detailsData.description.title}
+              content={detailsData.description.text}
+            />
+            <Paragraph subTitle={detailsData.links.title} content={linksData} />
+          </>
+        )}
+      </View>
       <ActionButton
         label={'back to search'}
         disabled={false}
@@ -20,12 +39,12 @@ function Details({data, loading, navigation}) {
           routeName: 'Search',
         })}
       />
-    </View>
+    </ScrollView>
   );
 }
 
 Details.propTypes = {
-  data: PropTypes.array,
+  currentDetails: PropTypes.object,
   loading: PropTypes.bool,
   navigation: PropTypes.object,
 };

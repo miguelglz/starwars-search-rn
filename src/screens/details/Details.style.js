@@ -1,11 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import theme from '../../config/theme';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: theme.colors.white[900],
     padding: theme.spacing.padding.xl,
+    justifyContent: 'space-between',
+    minHeight: Dimensions.get('window').height - 100,
   },
   titleContainer: {
     paddingBottom: theme.spacing.padding.md,
@@ -15,6 +16,7 @@ export default StyleSheet.create({
   title: {
     fontFamily: theme.font.weight.bold,
     fontSize: theme.font.size.title,
+    marginBottom: theme.spacing.margin.lg,
   },
   resultsContainer: {
     flex: 1,
