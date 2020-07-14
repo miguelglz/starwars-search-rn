@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {connect} from 'react-redux';
-import {selectDetails, setSearchData} from '../../actions/ResultsActions';
+import {selectDetails} from '../../actions/ResultsActions';
 import Details from './Details';
 import {appendToDataSet, getPropertiesAndTitles} from './Details.utils';
 import swAPI from '../../helpers/api';

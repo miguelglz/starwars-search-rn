@@ -15,15 +15,30 @@ export function ResultsDataLayer({
   searchData,
 }) {
   const [loading, setLoading] = React.useState(true);
+  const [lastApiResponse, setLastapiResponse] = React.useState({});
+
+  async function fetchNext() {
+    if (lastApiResponse.next) {
+      try {
+        const response = await swAPI.getFromUrl({url: lastApiResponse.next});
+        setLastapiResponse(response);
+        dispatchSetResultList([...resultList, ...response.results]);
+      } catch (e) {
+        console.log(e);
+        throw new Error(e.message);
+      }
+    }
+  }
 
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const {results} = await swAPI.getBySearchTerm({
+        const response = await swAPI.getBySearchTerm({
           endpoint: searchData.type,
           search: searchText,
         });
-        dispatchSetResultList(results);
+        setLastapiResponse(response);
+        dispatchSetResultList(response.results);
       } catch (e) {
         console.log(e);
         throw new Error(e.message);
@@ -35,7 +50,12 @@ export function ResultsDataLayer({
   }, []);
 
   return (
-    <Results data={resultList} loading={loading} navigation={navigation} />
+    <Results
+      data={resultList}
+      loading={loading}
+      navigation={navigation}
+      fetchNext={fetchNext}
+    />
   );
 }
 ResultsDataLayer.propTypes = {
