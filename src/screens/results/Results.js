@@ -25,7 +25,9 @@ Use the form to search for People or Movies.`}
           <FlatList
             data={data}
             style={styles.resultList}
-            renderItem={({item}) => <ResultItem data={item} />}
+            renderItem={({item}) => (
+              <ResultItem data={item} navigation={navigation} />
+            )}
             keyExtractor={({displayTitle}) => displayTitle}
           />
         )}
@@ -43,7 +45,7 @@ Use the form to search for People or Movies.`}
 }
 
 Results.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool,
   navigation: PropTypes.object,
   searchType: PropTypes.string,

@@ -21,7 +21,12 @@ function RadioGroup({data, onSelect, selected}) {
 }
 
 RadioGroup.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    }),
+  ),
 };
 
 export default RadioGroup;

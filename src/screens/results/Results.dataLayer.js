@@ -16,7 +16,10 @@ export function ResultsDataLayer({
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const {results} = await swAPI.getBySearchTerm(searchType, searchText);
+        const {results} = await swAPI.getBySearchTerm({
+          endpoint: searchType,
+          search: searchText,
+        });
         const dataSet = generateDataSet({results, searchType});
         setData(dataSet);
       } catch (e) {

@@ -7,6 +7,7 @@ import {headerDefaults} from './config/settings';
 
 import Search from './screens/search';
 import Results from './screens/results';
+import Details from './screens/details';
 
 const Stack = createStackNavigator();
 const routes = [
@@ -17,9 +18,10 @@ const routes = [
   {
     component: Results,
     name: 'Results',
-    navigationOptions: {
-      headerBackTitle: 'some label'
-    }
+  },
+  {
+    component: Details,
+    name: 'Details',
   },
 ];
 

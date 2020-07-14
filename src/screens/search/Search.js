@@ -50,8 +50,8 @@ function Search({
 
 Search.propTypes = {
   disableSearchButton: PropTypes.bool,
-  navigation: PropTypes.object,
-  options: PropTypes.array,
+  navigation: PropTypes.object.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object.isRequired),
   placeholder: PropTypes.string,
 };
 

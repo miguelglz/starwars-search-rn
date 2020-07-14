@@ -4,7 +4,7 @@
  * @param {Array} results - Array of objects obtained as a result of a swAPI get request
  * @param {string} searchType - Type of entitity searched (or endpoind called in the search)
  *
- * @returns {Function} callback - Callback to navigate to a route.
+ * @returns {Object} Fetch result with title and search type.
  */
 
 export function generateDataSet({results, searchType}) {
