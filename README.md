@@ -14,3 +14,4 @@
 - Test and adjust in other screens other than iPhone SE
 - Add custom font support to android
 - Fix uppercase and symbols in android
+- Finish implementing typechecking with proptypes
